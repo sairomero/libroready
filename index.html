@@ -13,32 +13,38 @@
         }
 
         :root {
-            --primary: #1a365d;
-            --accent: #f97316;
-            --gray: #f3f4f6;
-            --dark: #111827;
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --gray: #f8fafc;
+            --gray-border: #e2e8f0;
+            --dark: #1e293b;
             --white: #ffffff;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 16px;
         }
 
         h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         /* Navigation */
         nav {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px 0;
+            border-bottom: 1px solid var(--gray-border);
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -51,14 +57,15 @@
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--primary);
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            letter-spacing: -0.03em;
         }
 
         .logo svg {
@@ -96,49 +103,59 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #2d4a7c 100%);
-            color: white;
-            padding: 100px 20px;
+            background: linear-gradient(to bottom, #ffffff 0%, var(--gray) 100%);
+            color: var(--dark);
+            padding: 120px 20px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
+            font-size: 1.35rem;
+            margin-bottom: 48px;
+            color: #64748b;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
             background: var(--accent);
             color: white;
-            padding: 18px 45px;
-            border-radius: 50px;
+            padding: 16px 40px;
+            border-radius: 12px;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
             border: none;
             cursor: pointer;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
         }
 
         /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 100px 20px;
         }
 
         /* Sections */
@@ -147,10 +164,20 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 16px;
             color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 60px;
+            font-weight: 400;
         }
 
         /* Upload Section */
@@ -350,28 +377,31 @@
 
         .pricing-card {
             background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 40px;
-            transition: all 0.3s;
+            border: 1px solid var(--gray-border);
+            border-radius: 20px;
+            padding: 48px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
             border-color: var(--accent);
         }
 
         .pricing-card.featured {
             border-color: var(--accent);
-            border-width: 3px;
+            border-width: 2px;
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12);
         }
 
         .price {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             color: var(--primary);
-            margin: 20px 0;
+            margin: 24px 0;
+            letter-spacing: -0.03em;
         }
 
         .features-list {
@@ -412,14 +442,14 @@
     <nav>
         <div class="nav-container">
             <div class="logo" onclick="location.reload()">
-                <svg width="45" height="40" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
+                <svg width="40" height="36" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
                     <!-- Abstract pages in motion -->
-                    <!-- Page 1 (orange, left) -->
-                    <rect x="10" y="30" width="70" height="100" rx="8" fill="#f97316" opacity="0.8" transform="rotate(-10 45 80)"/>
-                    <!-- Page 2 (dark blue, center) -->
-                    <rect x="50" y="10" width="70" height="100" rx="8" fill="#1a365d"/>
-                    <!-- Page 3 (medium blue, right) -->
-                    <rect x="90" y="30" width="70" height="100" rx="8" fill="#2d5a8e" opacity="0.9" transform="rotate(-5 125 80)"/>
+                    <!-- Page 1 (light blue, left) -->
+                    <rect x="10" y="30" width="70" height="100" rx="12" fill="#93c5fd" opacity="0.9" transform="rotate(-10 45 80)"/>
+                    <!-- Page 2 (primary blue, center) -->
+                    <rect x="50" y="10" width="70" height="100" rx="12" fill="#3b82f6"/>
+                    <!-- Page 3 (dark blue, right) -->
+                    <rect x="90" y="30" width="70" height="100" rx="12" fill="#1e40af" opacity="0.95" transform="rotate(8 125 80)"/>
                 </svg>
                 <span>LibroReady</span>
             </div>
@@ -679,15 +709,15 @@
     <footer style="background: var(--primary); color: white; padding: 40px 20px; text-align: center;">
         <div class="container">
             <div class="logo" style="color: white; margin-bottom: 15px; justify-content: center;">
-                <svg width="45" height="40" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="30" width="70" height="100" rx="8" fill="#f97316" opacity="0.8" transform="rotate(-10 45 80)"/>
-                    <rect x="50" y="10" width="70" height="100" rx="8" fill="white"/>
-                    <rect x="90" y="30" width="70" height="100" rx="8" fill="#2d5a8e" opacity="0.9" transform="rotate(-5 125 80)"/>
+                <svg width="40" height="36" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="30" width="70" height="100" rx="12" fill="#93c5fd" opacity="0.9" transform="rotate(-10 45 80)"/>
+                    <rect x="50" y="10" width="70" height="100" rx="12" fill="#ffffff"/>
+                    <rect x="90" y="30" width="70" height="100" rx="12" fill="#60a5fa" opacity="0.95" transform="rotate(8 125 80)"/>
                 </svg>
                 <span>LibroReady</span>
             </div>
-            <p style="opacity: 0.8; margin-bottom: 20px;">Simple ebook formatting for Amazon KDP</p>
-            <p style="opacity: 0.7;">&copy; 2024 LibroReady. All rights reserved.</p>
+            <p style="opacity: 0.9; margin-bottom: 20px; font-size: 1.05rem;">Simple ebook formatting for Amazon KDP</p>
+            <p style="opacity: 0.7; font-size: 0.95rem;">&copy; 2024 LibroReady. All rights reserved.</p>
         </div>
     </footer>
 
