@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDP Pro Formatter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1614;
+            --cream: #fef9f3;
+            --rust: #b85d41;
+            --sage: #8c9986;
+            --gold: #d4a574;
+            --shadow: rgba(26, 22, 20, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #f5ede3 100%);
+            color: var(--ink);
+            line-height: 1.7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(5deg); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 0 var(--gold);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--rust);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 
+                0 20px 60px var(--shadow),
+                0 0 0 1px rgba(184, 93, 65, 0.1);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--rust), var(--gold), var(--sage));
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--sage);
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, transparent 0%, rgba(140, 153, 134, 0.03) 100%);
+            position: relative;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--rust);
+            background: linear-gradient(135deg, transparent 0%, rgba(184, 93, 65, 0.05) 100%);
+            transform: translateY(-2px);
+        }
+
+        .upload-zone.dragover {
+            border-color: var(--gold);
+            background: rgba(212, 165, 116, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--sage);
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover .upload-icon {
+            color: var(--rust);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .upload-text {
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .upload-hint {
+            font-size: 1rem;
+            color: var(--sage);
+            font-weight: 300;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--rust) 0%, #9e4a35 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(184, 93, 65, 0.3);
+            letter-spacing: 1px;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(184, 93, 65, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #results {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .result-section {
+            margin-bottom: 30px;
+        }
+
+        .result-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--rust);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .issue-list, .suggestion-list {
+            list-style: none;
+        }
+
+        .issue-list li, .suggestion-list li {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            animation: slideIn 0.4s ease backwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .issue-list li {
+            background: rgba(184, 93, 65, 0.08);
+            border-left: 4px solid var(--rust);
+        }
+
+        .suggestion-list li {
+            background: rgba(140, 153, 134, 0.08);
+            border-left: 4px solid var(--sage);
+        }
+
+        .success-message {
+            background: rgba(140, 153, 134, 0.15);
+            border: 2px solid var(--sage);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(184, 93, 65, 0.2);
+            border-top-color: var(--rust);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-size: 1.2rem;
+            color: var(--sage);
+            font-weight: 300;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: var(--sage);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                padding: 30px 25px;
+            }
+            
+            .upload-zone {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>KDP Pro</h1>
+            <p class="subtitle">Formatter</p>
+        </header>
+
+        <div class="card">
+            <h2>Upload Your Manuscript</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--sage);">
+                We'll analyze your document and ensure it meets all Amazon Kindle Direct Publishing requirements.
+            </p>
+            
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">📚</div>
+                <div class="upload-text">Drop your .docx file here</div>
+                <div class="upload-hint">or click to browse</div>
+                <input type="file" id="fileInput" accept=".docx">
+            </div>
+
+            <div style="margin-top: 30px; text-align: center;">
+                <button class="btn" id="analyzeBtn" disabled>Analyze Document</button>
+            </div>
+        </div>
+
+        <div class="loader" id="loader">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Analyzing your manuscript...</div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <footer>
+        <p>KDP Pro Formatter • Helping authors publish with confidence</p>
+    </footer>
+
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loader = document.getElementById('loader');
+        const results = document.getElementById('results');
+        let selectedFile = null;
+
+        // Upload zone click
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        // Drag and drop
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.docx')) {
+                handleFile(file);
+            }
+        });
+
+        // File selection
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+
+        function handleFile(file) {
+            selectedFile = file;
+            uploadZone.querySelector('.upload-text').textContent = file.name;
+            uploadZone.querySelector('.upload-hint').textContent = '✓ File selected';
+            uploadZone.querySelector('.upload-icon').textContent = '✓';
+            analyzeBtn.disabled = false;
+        }
+
+        // Analyze button
+        analyzeBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            // Show loader
+            loader.style.display = 'block';
+            results.style.display = 'none';
+            analyzeBtn.disabled = true;
+
+            // Simulate analysis (in production, this would send to backend)
+            await simulateAnalysis();
+
+            // Hide loader
+            loader.style.display = 'none';
+            results.style.display = 'block';
+            analyzeBtn.disabled = false;
+        });
+
+        async function simulateAnalysis() {
+            // Simulate processing time
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Mock results - in production, this would come from Python backend
+            const mockIssues = [
+                '❌ Found 23 paragraphs using tab indentation',
+                '⚠️ 45 paragraphs missing line spacing definitions',
+                '❌ No Heading 1 styles found for chapters'
+            ];
+
+            const mockSuggestions = [
+                '✓ Replace tabs with proper paragraph indentation using styles',
+                '✓ Apply consistent line spacing (1.15 or 1.5 recommended)',
+                '✓ Apply Heading 1 style to chapter titles for proper TOC generation',
+                '✓ Add page breaks before each chapter for clean formatting',
+                '📷 Found 8 images - ensure they\'re high quality (300+ DPI)'
+            ];
+
+            displayResults(mockIssues, mockSuggestions);
+        }
+
+        function displayResults(issues, suggestions) {
+            let html = '<div class="card">';
+            html += '<h2>Analysis Complete</h2>';
+
+            if (issues.length === 0) {
+                html += '<div class="success-message">';
+                html += '✅ Excellent! Your document meets all KDP formatting requirements.';
+                html += '</div>';
+            } else {
+                html += '<div class="result-section">';
+                html += '<h3>Issues Found</h3>';
+                html += '<ul class="issue-list">';
+                issues.forEach((issue, i) => {
+                    html += `<li style="animation-delay: ${i * 0.1}s">${issue}</li>`;
+                });
+                html += '</ul>';
+                html += '</div>';
+            }
+
+            if (suggestions.length > 0) {
+                html += '<div class="result-section">';
+                html += '<h3>Recommendations</h3>';
+                html += '<ul class="suggestion-list">';
+                suggestions.forEach((suggestion, i) => {
+                    html += `<li style="animation-delay: ${i * 0.1}s">${suggestion}</li>`;
+                });
+                html += '</ul>';
+                html += '</div>';
+            }
+
+            html += '<div style="margin-top: 30px; text-align: center;">';
+            html += '<button class="btn" onclick="applyFixes()">Apply Automatic Fixes</button>';
+            html += '</div>';
+
+            html += '</div>';
+            results.innerHTML = html;
+        }
+
+        function applyFixes() {
+            alert('This feature will automatically fix all formatting issues and create a KDP-ready document!');
+            // In production, this would trigger the Python backend to apply fixes
+        }
+    </script>
+</body>
+</html>

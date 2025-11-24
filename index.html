@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibroReady - Format Your Ebook for Kindle in Minutes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a365d;
+            --accent: #f97316;
+            --gray: #f3f4f6;
+            --dark: #111827;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo svg {
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switch {
+            background: var(--gray);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d4a7c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Sections */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: var(--gray);
+            min-height: 600px;
+            display: none;
+        }
+
+        .upload-section.active {
+            display: block;
+        }
+
+        .upload-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--accent);
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--gray);
+        }
+
+        .upload-zone:hover {
+            background: #fff7ed;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: white;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--gray);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .chapters-list, .issues-list {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .chapter-item, .issue-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Premium Section */
+        .premium-section {
+            background: var(--gray);
+            display: none;
+        }
+
+        .premium-section.active {
+            display: block;
+        }
+
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .premium-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 4px solid var(--accent);
+        }
+
+        .premium-result {
+            margin-top: 15px;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d4a7c 100%);
+            color: white;
+            display: none;
+        }
+
+        .download-section.active {
+            display: block;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .download-card {
+            background: white;
+            color: var(--dark);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Loader */
+        .loader {
+            text-align: center;
+            padding: 60px;
+            display: none;
+        }
+
+        .loader.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--gray);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Pricing */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            border-width: 3px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="location.reload()">
+                <svg width="45" height="40" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Abstract pages in motion -->
+                    <!-- Page 1 (orange, left) -->
+                    <rect x="10" y="30" width="70" height="100" rx="8" fill="#f97316" opacity="0.8" transform="rotate(-10 45 80)"/>
+                    <!-- Page 2 (dark blue, center) -->
+                    <rect x="50" y="10" width="70" height="100" rx="8" fill="#1a365d"/>
+                    <!-- Page 3 (medium blue, right) -->
+                    <rect x="90" y="30" width="70" height="100" rx="8" fill="#2d5a8e" opacity="0.9" transform="rotate(-5 125 80)"/>
+                </svg>
+                <span>LibroReady</span>
+            </div>
+            <div class="nav-links">
+                <a href="#pricing">Pricing</a>
+                <button class="cta-button" style="padding: 12px 30px; font-size: 1rem;" onclick="startFormatting()">Start Formatting →</button>
+                <span class="lang-switch">🌐 EN / ES</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Format your ebook for Kindle<br>in minutes. Not days.</h1>
+        <p class="hero-subtitle">Upload your manuscript and get a perfectly formatted EPUB + print-ready PDF with one click.</p>
+        <button class="cta-button" onclick="startFormatting()">Start Formatting →</button>
+    </section>
+
+    <!-- Features Section -->
+    <section style="background: white; padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">Everything You Need to Publish on Amazon</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 60px;">
+                Professional formatting tools trusted by independent authors
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+                <!-- Feature 1 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📚</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Smart Chapter Detection</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Automatically finds and formats your chapters. Supports multiple languages and naming patterns.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">✨</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Auto-Fix Formatting</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📱</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">EPUB for Kindle</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📖</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Table of Contents</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Automatic TOC generation with proper navigation for eReaders. No manual work required.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📕</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Print-Ready PDF</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Get a professionally formatted PDF for paperback publishing with proper margins and spacing.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div style="text-align: center;">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">🔍</div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Keyword Research</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">AI-powered keyword suggestions to help your book get discovered on Amazon. (Premium)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section style="background: linear-gradient(135deg, var(--primary) 0%, #2d4a7c 100%); color: white; padding: 60px 20px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center;">
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px;">10,000+</div>
+                    <div style="opacity: 0.9; font-size: 1.1rem;">Books Formatted</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px;">98%</div>
+                    <div style="opacity: 0.9; font-size: 1.1rem;">Success Rate on KDP</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px;">5 min</div>
+                    <div style="opacity: 0.9; font-size: 1.1rem;">Average Processing Time</div>
+                </div>
+                <div>
+                    <div style="font-size: 3.5rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; margin-bottom: 10px;">4.9★</div>
+                    <div style="opacity: 0.9; font-size: 1.1rem;">Author Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="uploadSection">
+        <div class="container">
+            <div class="upload-card">
+                <h2 class="section-title">Upload Your Manuscript</h2>
+                <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">
+                    We'll analyze your document and ensure it meets Amazon KDP requirements
+                </p>
+
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">📚</div>
+                    <div class="upload-text">Drop your .docx file here</div>
+                    <div style="color: #6b7280; margin-top: 10px;">or click to browse</div>
+                    <input type="file" id="fileInput" accept=".docx">
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="cta-button" id="analyzeBtn" disabled>Analyze Document</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loader -->
+    <section class="loader" id="loader">
+        <div class="spinner"></div>
+        <div style="font-size: 1.2rem; color: #6b7280;" id="loaderText">Analyzing your manuscript...</div>
+    </section>
+
+    <!-- Results/Review Section -->
+    <section class="results-section" id="resultsSection">
+        <div class="container">
+            <h2 class="section-title">Review Your Book</h2>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="statChapters">0</div>
+                    <div>Chapters Detected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statIssues">0</div>
+                    <div>Issues Found</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statWords">0</div>
+                    <div>Total Words</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">📑 Detected Chapters</h3>
+            <div class="chapters-list" id="chaptersList"></div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px;">🔧 Formatting Issues</h3>
+            <div class="issues-list" id="issuesList"></div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="cta-button" onclick="processDocument()">Generate Files</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Features Section -->
+    <section class="premium-section" id="premiumSection">
+        <div class="container">
+            <h2 class="section-title">Premium Features</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 40px;">
+                Get keywords, categories, optimized description, and cover design
+            </p>
+
+            <div class="premium-features" id="premiumFeatures">
+                <!-- Will be populated with premium content -->
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="cta-button" onclick="showDownload()">Continue to Download</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section" id="downloadSection">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">🎉 Your Book is Ready!</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px;">
+                Download your professionally formatted files
+            </p>
+
+            <div class="download-grid">
+                <div class="download-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">📱</div>
+                    <h3>EPUB File</h3>
+                    <p style="color: #6b7280; margin: 15px 0;">For Amazon KDP eBook</p>
+                    <button class="cta-button" onclick="downloadFile('epub')">Download EPUB</button>
+                </div>
+
+                <div class="download-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">📄</div>
+                    <h3>Word Document</h3>
+                    <p style="color: #6b7280; margin: 15px 0;">Formatted .docx file</p>
+                    <button class="cta-button" onclick="downloadFile('docx')">Download DOCX</button>
+                </div>
+
+                <div class="download-card">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">📕</div>
+                    <h3>Print PDF</h3>
+                    <p style="color: #6b7280; margin: 15px 0;">For print books</p>
+                    <button class="cta-button" onclick="downloadFile('pdf')">Download PDF</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="cta-button" onclick="location.reload()">Format Another Book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section style="background: white; padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 60px;">
+                Three simple steps. One beautiful book.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">1</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Upload</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Drag and drop your .docx manuscript. We'll analyze it automatically.</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">2</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Review</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">See what issues we found. Choose which chapters and fixes to apply.</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">3</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Download</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Get your EPUB, formatted DOCX, and print PDF. Ready for Amazon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section style="background: var(--gray); padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">Loved by Independent Authors</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 60px;">
+                See what authors are saying about LibroReady
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <!-- Testimonial 1 -->
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="color: var(--accent); font-size: 2rem; margin-bottom: 15px;">★★★★★</div>
+                    <p style="color: #374151; line-height: 1.7; margin-bottom: 20px; font-style: italic;">
+                        "LibroReady saved me hours of formatting headaches. My book was accepted by KDP on the first try!"
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), #2d5a8e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem;">MR</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">María Rodríguez</div>
+                            <div style="color: #6b7280; font-size: 0.9rem;">Romance Author</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="color: var(--accent); font-size: 2rem; margin-bottom: 15px;">★★★★★</div>
+                    <p style="color: #374151; line-height: 1.7; margin-bottom: 20px; font-style: italic;">
+                        "The keyword research feature helped my book rank higher in Amazon searches. Worth every penny!"
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), #2d5a8e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem;">JC</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">James Chen</div>
+                            <div style="color: #6b7280; font-size: 0.9rem;">Business Author</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="color: var(--accent); font-size: 2rem; margin-bottom: 15px;">★★★★★</div>
+                    <p style="color: #374151; line-height: 1.7; margin-bottom: 20px; font-style: italic;">
+                        "As a non-tech person, this was a lifesaver. Simple, fast, and the EPUB worked perfectly!"
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), #2d5a8e); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem;">SP</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">Sarah Patterson</div>
+                            <div style="color: #6b7280; font-size: 0.9rem;">Thriller Author</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background: white; padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+
+                <!-- FAQ Item 1 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        Will my EPUB be accepted by Amazon KDP?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Yes! LibroReady follows all Amazon KDP formatting requirements. We ensure proper chapter structure, table of contents, indentation, and spacing. Our 98% first-time acceptance rate speaks for itself.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        What file format do I need to upload?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        You need a .docx file (Microsoft Word format). If you have a different format, you can easily convert it to .docx using Google Docs or Microsoft Word.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        Do you support books in Spanish?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Yes! LibroReady supports both English and Spanish books. Our chapter detection works with both "Chapter" and "Capítulo" patterns, plus many other variations.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        Can I review the formatting before downloading?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Absolutely! After uploading, you'll see all detected chapters and formatting issues. You can choose which fixes to apply and which chapters to include before generating the final files.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 5 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        What's included in the Premium plan?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Premium includes everything in Basic plus: AI-powered keyword research (7 optimized keywords for KDP), BISAC category recommendations, an HTML description optimizer, and a simple cover generator. Perfect for authors who want the complete publishing package.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 6 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        How long does the formatting take?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Most books are analyzed and formatted in under 5 minutes. Larger books (100,000+ words) may take a bit longer, but you'll still have your files in less than 10 minutes.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 7 -->
+                <details style="background: var(--gray); padding: 25px; border-radius: 12px; margin-bottom: 15px; cursor: pointer;">
+                    <summary style="font-weight: 600; font-size: 1.1rem; color: var(--primary); cursor: pointer;">
+                        Do you offer refunds?
+                    </summary>
+                    <p style="margin-top: 15px; color: #6b7280; line-height: 1.7;">
+                        Yes! If your formatted EPUB is rejected by Amazon KDP due to formatting issues, we'll fix it for free or provide a full refund. We stand behind our work 100%.
+                    </p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" style="background: var(--gray);">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 50px;">
+                Pay once per book. No subscriptions. No hidden fees.
+            </p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$50<span style="font-size: 1rem; color: #6b7280;">/book</span></div>
+                    <ul class="features-list">
+                        <li>Automatic formatting fixes</li>
+                        <li>Chapter detection</li>
+                        <li>EPUB for Kindle</li>
+                        <li>Print PDF</li>
+                        <li>Table of contents</li>
+                    </ul>
+                    <button class="cta-button" onclick="startFormatting()">Get Started</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div style="background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin-bottom: 20px;">Most Popular</div>
+                    <h3>Premium</h3>
+                    <div class="price">$99<span style="font-size: 1rem; color: #6b7280;">/book</span></div>
+                    <ul class="features-list">
+                        <li><strong>Everything in Basic</strong></li>
+                        <li>AI keyword research</li>
+                        <li>Category recommendations</li>
+                        <li>Description optimizer</li>
+                        <li>Cover design</li>
+                    </ul>
+                    <button class="cta-button" onclick="startFormatting()">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Pro</h3>
+                    <div class="price">$149<span style="font-size: 1rem; color: #6b7280;">/book</span></div>
+                    <ul class="features-list">
+                        <li><strong>Everything in Premium</strong></li>
+                        <li>Print cover with spine</li>
+                        <li>Multiple formats</li>
+                        <li>White-glove service</li>
+                        <li>Same-day delivery</li>
+                    </ul>
+                    <button class="cta-button" onclick="startFormatting()">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--primary); color: white; padding: 60px 20px 30px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <!-- Brand -->
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 20px;">
+                        <svg width="45" height="40" viewBox="-10 -10 200 160" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="30" width="70" height="100" rx="8" fill="#f97316" opacity="0.8" transform="rotate(-10 45 80)"/>
+                            <rect x="50" y="10" width="70" height="100" rx="8" fill="white"/>
+                            <rect x="90" y="30" width="70" height="100" rx="8" fill="#2d5a8e" opacity="0.9" transform="rotate(-5 125 80)"/>
+                        </svg>
+                        <span>LibroReady</span>
+                    </div>
+                    <p style="opacity: 0.8; line-height: 1.6;">
+                        Professional ebook formatting for independent authors. Get your book on Amazon KDP in minutes.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 style="margin-bottom: 20px; font-size: 1.1rem;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="#pricing" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Pricing</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" onclick="startFormatting(); return false;" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Start Formatting</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">FAQ</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 style="margin-bottom: 20px; font-size: 1.1rem;">Resources</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">KDP Requirements</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Formatting Guide</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Publishing Tips</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 style="margin-bottom: 20px; font-size: 1.1rem;">Support</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Help Center</a></li>
+                        <li style="margin-bottom: 12px;"><a href="mailto:support@libroready.com" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">support@libroready.com</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Terms of Service</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s;">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; text-align: center; opacity: 0.7;">
+                <p>&copy; 2024 LibroReady. All rights reserved. Made with ❤️ for indie authors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api';
+        let sessionId = null;
+        let analysisData = null;
+        let selectedFile = null;
+
+        function startFormatting() {
+            document.getElementById('uploadSection').classList.add('active');
+            document.getElementById('uploadSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Upload handling
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.style.background = '#fff7ed';
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.style.background = 'var(--gray)';
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.style.background = 'var(--gray)';
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.docx')) {
+                handleFile(file);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function handleFile(file) {
+            selectedFile = file;
+            uploadZone.querySelector('.upload-text').textContent = file.name;
+            uploadZone.querySelector('.upload-icon').textContent = '✓';
+            analyzeBtn.disabled = false;
+        }
+
+        analyzeBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            showLoader('Analyzing your manuscript...');
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            try {
+                const response = await fetch(`${API_URL}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                sessionId = data.session_id;
+                analysisData = data.analysis;
+                showResults();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+        function showLoader(text) {
+            document.getElementById('loaderText').textContent = text;
+            document.getElementById('uploadSection').classList.remove('active');
+            document.getElementById('loader').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showResults() {
+            document.getElementById('loader').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+
+            document.getElementById('statChapters').textContent = analysisData.chapters.length;
+            document.getElementById('statIssues').textContent = analysisData.issues.length;
+            document.getElementById('statWords').textContent = analysisData.stats.total_words.toLocaleString();
+
+            // Populate chapters
+            const chaptersList = document.getElementById('chaptersList');
+            chaptersList.innerHTML = analysisData.chapters.map((chapter, i) => `
+                <div class="chapter-item">
+                    <input type="checkbox" class="checkbox chapter-checkbox" id="chapter_${i}" checked data-chapter='${JSON.stringify(chapter)}'>
+                    <label for="chapter_${i}" style="flex: 1;">${chapter.text}</label>
+                    <span style="background: var(--gray); padding: 4px 12px; border-radius: 12px; font-size: 0.85rem;">${chapter.method}</span>
+                </div>
+            `).join('');
+
+            // Populate issues
+            const issuesList = document.getElementById('issuesList');
+            issuesList.innerHTML = analysisData.issues.map((issue, i) => `
+                <div class="issue-item">
+                    <input type="checkbox" class="checkbox issue-checkbox" id="issue_${i}" checked data-issue-id="${issue.id}">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; margin-bottom: 5px;">${issue.severity === 'critical' ? '🚫' : '⚠️'} ${issue.name}</div>
+                        <div style="color: #6b7280; font-size: 0.9rem;">${issue.description}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function processDocument() {
+            showLoader('Generating your files...');
+
+            const selectedChapters = Array.from(document.querySelectorAll('.chapter-checkbox:checked'))
+                .map(cb => JSON.parse(cb.dataset.chapter));
+
+            const selectedFixes = Array.from(document.querySelectorAll('.issue-checkbox:checked'))
+                .map(cb => cb.dataset.issueId);
+
+            try {
+                const response = await fetch(`${API_URL}/process`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        chapters: selectedChapters,
+                        fixes: selectedFixes
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                showPremium();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function showPremium() {
+            document.getElementById('loader').classList.remove('active');
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('premiumSection').classList.add('active');
+            document.getElementById('premiumSection').scrollIntoView({ behavior: 'smooth' });
+
+            // Initialize premium features UI
+            initializePremiumFeatures();
+        }
+
+        function initializePremiumFeatures() {
+            const premiumFeatures = document.getElementById('premiumFeatures');
+            premiumFeatures.innerHTML = `
+                <!-- Keyword Research Card -->
+                <div class="premium-card">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">🔍 Keyword Research</h3>
+                    <p style="color: #6b7280; margin-bottom: 20px;">Get AI-powered keyword recommendations for Amazon KDP</p>
+                    <input type="text" id="bookTitle" placeholder="Book title" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 10px; font-family: inherit;">
+                    <textarea id="bookDescription" placeholder="Brief description (optional)" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; height: 80px; font-family: inherit; resize: vertical;"></textarea>
+                    <button class="cta-button" style="width: 100%; margin-top: 15px;" onclick="generateKeywords()">Generate Keywords</button>
+                    <div id="keywordsResult" class="premium-result"></div>
+                </div>
+
+                <!-- Category Recommendations Card -->
+                <div class="premium-card">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">📚 BISAC Categories</h3>
+                    <p style="color: #6b7280; margin-bottom: 20px;">Get the best category recommendations for your book</p>
+                    <button class="cta-button" style="width: 100%;" onclick="generateCategories()" id="categoriesBtn" disabled>Generate Categories</button>
+                    <p style="color: #6b7280; font-size: 0.85rem; margin-top: 10px;">Generate keywords first</p>
+                    <div id="categoriesResult" class="premium-result"></div>
+                </div>
+
+                <!-- Description Optimizer Card -->
+                <div class="premium-card">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">✨ Description Optimizer</h3>
+                    <p style="color: #6b7280; margin-bottom: 20px;">Create an optimized HTML description for KDP</p>
+                    <textarea id="rawDescription" placeholder="Paste your book description here..." style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; height: 120px; font-family: inherit; resize: vertical;"></textarea>
+                    <button class="cta-button" style="width: 100%; margin-top: 15px;" onclick="optimizeDescription()" id="descriptionBtn" disabled>Optimize Description</button>
+                    <p style="color: #6b7280; font-size: 0.85rem; margin-top: 10px;">Generate keywords first</p>
+                    <div id="descriptionResult" class="premium-result"></div>
+                </div>
+
+                <!-- Cover Generator Card -->
+                <div class="premium-card">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">🎨 Cover Generator</h3>
+                    <p style="color: #6b7280; margin-bottom: 20px;">Generate a simple cover design (1600x2400px)</p>
+                    <input type="text" id="authorName" placeholder="Author name" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 10px; font-family: inherit;">
+                    <input type="text" id="subtitle" placeholder="Subtitle (optional)" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-family: inherit;">
+                    <button class="cta-button" style="width: 100%; margin-top: 15px;" onclick="generateCover()" id="coverBtn" disabled>Generate Cover</button>
+                    <p style="color: #6b7280; font-size: 0.85rem; margin-top: 10px;">Generate keywords first</p>
+                    <div id="coverResult" class="premium-result"></div>
+                </div>
+            `;
+        }
+
+        let premiumData = {
+            genre: null,
+            keywords: null,
+            themes: null
+        };
+
+        async function generateKeywords() {
+            const title = document.getElementById('bookTitle').value.trim();
+            if (!title) {
+                alert('Please enter a book title');
+                return;
+            }
+
+            const description = document.getElementById('bookDescription').value.trim();
+            const resultDiv = document.getElementById('keywordsResult');
+            resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #6b7280;">Analyzing...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/premium/keywords`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        title: title,
+                        description: description
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                // Store for other features
+                premiumData.genre = data.genre;
+                premiumData.keywords = data.recommended_7;
+                premiumData.themes = data.themes;
+
+                // Enable other premium features
+                document.getElementById('categoriesBtn').disabled = false;
+                document.getElementById('descriptionBtn').disabled = false;
+                document.getElementById('coverBtn').disabled = false;
+
+                // Display results
+                resultDiv.innerHTML = `
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <div style="font-weight: 600; color: var(--primary); margin-bottom: 10px;">Detected Genre: ${data.genre}</div>
+                        <div style="font-weight: 600; margin-bottom: 10px;">Top 7 Keywords for KDP:</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            ${data.recommended_7.map(kw => `<span style="background: white; padding: 6px 12px; border-radius: 20px; font-size: 0.9rem; border: 1px solid #d1d5db;">${kw}</span>`).join('')}
+                        </div>
+                        <details style="margin-top: 15px;">
+                            <summary style="cursor: pointer; font-weight: 600; color: var(--accent);">View all ${data.suggested_keywords.length} suggestions</summary>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                                ${data.suggested_keywords.map(kw => `<span style="background: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid #e5e7eb;">${kw}</span>`).join('')}
+                            </div>
+                        </details>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #d1d5db;">
+                            <div style="font-weight: 600; margin-bottom: 8px;">Tips:</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; color: #6b7280;">
+                                ${data.keyword_tips.map(tip => `<li>${tip}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function generateCategories() {
+            if (!premiumData.genre) {
+                alert('Please generate keywords first');
+                return;
+            }
+
+            const title = document.getElementById('bookTitle').value.trim();
+            const resultDiv = document.getElementById('categoriesResult');
+            resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #6b7280;">Analyzing...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/premium/categories`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        genre: premiumData.genre,
+                        themes: premiumData.themes,
+                        title: title
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                resultDiv.innerHTML = `
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <div style="font-weight: 600; margin-bottom: 15px;">Recommended BISAC Categories:</div>
+                        ${data.map((cat, i) => `
+                            <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--accent);">
+                                <div style="font-weight: 600; color: var(--primary); margin-bottom: 5px;">Option ${i + 1}</div>
+                                <div style="font-size: 0.95rem; margin-bottom: 8px;">${cat.full_path}</div>
+                                <div style="background: #fef3c7; padding: 4px 10px; border-radius: 12px; display: inline-block; font-size: 0.85rem;">
+                                    ${cat.confidence}% confidence
+                                </div>
+                            </div>
+                        `).join('')}
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.9rem;">
+                            💡 You can select up to 10 BISAC categories on Amazon KDP
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function optimizeDescription() {
+            if (!premiumData.genre || !premiumData.keywords) {
+                alert('Please generate keywords first');
+                return;
+            }
+
+            const rawDesc = document.getElementById('rawDescription').value.trim();
+            if (!rawDesc) {
+                alert('Please enter a description to optimize');
+                return;
+            }
+
+            const resultDiv = document.getElementById('descriptionResult');
+            resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #6b7280;">Optimizing...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/premium/description`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        description: rawDesc,
+                        genre: premiumData.genre,
+                        keywords: premiumData.keywords
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                resultDiv.innerHTML = `
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Optimized HTML Description:</div>
+                        <textarea readonly style="width: 100%; height: 200px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-family: monospace; font-size: 0.85rem; resize: vertical;">${data.html}</textarea>
+                        <button class="cta-button" style="width: 100%; margin-top: 10px;" onclick="copyToClipboard('${data.html.replace(/'/g, "\\'")}')">Copy to Clipboard</button>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #d1d5db;">
+                            <div style="font-weight: 600; margin-bottom: 8px;">Character count: ${data.character_count} / 4000</div>
+                            <div style="font-weight: 600; margin-bottom: 8px;">Tips:</div>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 0.9rem; color: #6b7280;">
+                                ${data.tips.map(tip => `<li>${tip}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <div style="font-weight: 600; margin-bottom: 10px;">Preview:</div>
+                            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #d1d5db;">
+                                ${data.html}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function generateCover() {
+            if (!premiumData.genre) {
+                alert('Please generate keywords first');
+                return;
+            }
+
+            const title = document.getElementById('bookTitle').value.trim();
+            const author = document.getElementById('authorName').value.trim();
+
+            if (!title || !author) {
+                alert('Please enter book title and author name');
+                return;
+            }
+
+            const subtitle = document.getElementById('subtitle').value.trim();
+            const resultDiv = document.getElementById('coverResult');
+            resultDiv.innerHTML = '<div style="text-align: center; padding: 20px; color: #6b7280;">Generating cover...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/premium/cover`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        title: title,
+                        author: author,
+                        genre: premiumData.genre,
+                        subtitle: subtitle
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                resultDiv.innerHTML = `
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <div style="font-weight: 600; margin-bottom: 15px;">Cover Preview:</div>
+                        <img src="${API_URL}/premium/cover/${sessionId}" style="width: 100%; max-width: 300px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 15px;">
+                        <div style="margin-bottom: 10px; color: #6b7280; font-size: 0.9rem;">1600x2400px (Amazon KDP standard)</div>
+                        <a href="${API_URL}/premium/cover/${sessionId}" download class="cta-button" style="width: 100%; display: block; text-align: center; text-decoration: none;">Download Cover (PNG)</a>
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem;">
+                            💡 This is a simple placeholder design. For professional covers, consider hiring a designer from Fiverr or 99designs.
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+
+        function showDownload() {
+            document.getElementById('loader').classList.remove('active');
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('premiumSection').classList.remove('active');
+            document.getElementById('downloadSection').classList.add('active');
+            document.getElementById('downloadSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function downloadFile(fileType) {
+            window.location.href = `${API_URL}/download/${sessionId}/${fileType}`;
+        }
+    </script>
+</body>
+</html>
