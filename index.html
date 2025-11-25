@@ -572,20 +572,20 @@
     <section class="upload-section" id="uploadSection">
         <div class="container">
             <div class="upload-card">
-                <h2 class="section-title">Upload Your Manuscript</h2>
-                <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">
+                <h2 class="section-title" data-i18n="upload.title">Upload Your Manuscript</h2>
+                <p style="text-align: center; color: #6b7280; margin-bottom: 30px;" data-i18n="upload.subtitle">
                     We'll analyze your document and ensure it meets Amazon KDP requirements
                 </p>
 
                 <div class="upload-zone" id="uploadZone">
                     <div class="upload-icon">📚</div>
-                    <div class="upload-text">Drop your .docx file here</div>
-                    <div style="color: #6b7280; margin-top: 10px;">or click to browse</div>
+                    <div class="upload-text" data-i18n="upload.dropText">Drop your .docx file here</div>
+                    <div style="color: #6b7280; margin-top: 10px;" data-i18n="upload.clickText">or click to browse</div>
                     <input type="file" id="fileInput" accept=".docx">
                 </div>
 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="cta-button" id="analyzeBtn" disabled>Analyze Document</button>
+                    <button class="cta-button" id="analyzeBtn" disabled data-i18n="upload.analyzeBtn">Analyze Document</button>
                 </div>
             </div>
         </div>
@@ -594,7 +594,7 @@
     <!-- Loader -->
     <section class="loader" id="loader">
         <div class="spinner"></div>
-        <div style="font-size: 1.2rem; color: #6b7280;" id="loaderText">Analyzing your manuscript...</div>
+        <div style="font-size: 1.2rem; color: #6b7280;" id="loaderText" data-i18n="upload.analyzing">Analyzing your manuscript...</div>
     </section>
 
     <!-- Results/Review Section -->
@@ -831,6 +831,14 @@
                 footer: {
                     tagline: "Simple ebook formatting for Amazon KDP",
                     copyright: "&copy; 2024 LibroReady. All rights reserved."
+                },
+                upload: {
+                    title: "Upload Your Manuscript",
+                    subtitle: "We'll analyze your document and ensure it meets Amazon KDP requirements",
+                    dropText: "Drop your .docx file here",
+                    clickText: "or click to browse",
+                    analyzeBtn: "Analyze Document",
+                    analyzing: "Analyzing your manuscript..."
                 }
             },
             es: {
@@ -886,6 +894,14 @@
                 footer: {
                     tagline: "Formato simple de ebooks para Amazon KDP",
                     copyright: "&copy; 2024 LibroReady. Todos los derechos reservados."
+                },
+                upload: {
+                    title: "Sube tu manuscrito",
+                    subtitle: "Analizaremos tu documento y nos aseguraremos de que cumpla con los requisitos de Amazon KDP",
+                    dropText: "Arrastra tu archivo .docx aquí",
+                    clickText: "o haz clic para buscar",
+                    analyzeBtn: "Analizar documento",
+                    analyzing: "Analizando tu manuscrito..."
                 }
             }
         };
