@@ -114,8 +114,8 @@ class LibroReadyFormatter:
         for i, para in enumerate(doc.paragraphs):
             text = para.text.strip()
 
-            # Skip empty or very long paragraphs
-            if not text or len(text) > 100:
+            # Skip empty or very long paragraphs (increased from 100 to 200)
+            if not text or len(text) > 200:
                 continue
 
             # Method 1: Check against chapter patterns
@@ -130,14 +130,15 @@ class LibroReadyFormatter:
                 continue
 
             # Method 2: Detect section headers by formatting
-            # Skip first 30 paragraphs (usually title pages)
-            if i > 30 and len(text) < 50 and para.runs:
+            # Skip first 5 paragraphs (reduced from 30 to catch more chapters)
+            if i > 5 and len(text) < 80 and para.runs:
                 first_run = para.runs[0]
 
-                # Look for: Bold + Large font (20+pt) + Short text
+                # Look for: Bold + Large font (16+pt) + Short text
+                # Reduced font size requirement from 20pt to 16pt
                 if (first_run.bold and
                     first_run.font.size and
-                    first_run.font.size.pt >= 20):
+                    first_run.font.size.pt >= 16):
                     detected_chapters.append((i, text, 'formatting'))
 
         # Apply detected chapters
