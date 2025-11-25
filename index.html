@@ -557,13 +557,6 @@
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f5.title">Print-Ready PDF</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f5.desc">Get a professionally formatted PDF for paperback publishing with proper margins and spacing.</p>
                 </div>
-
-                <!-- Feature 6 -->
-                <div style="text-align: center;">
-                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">🔍</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f6.title">Keyword Research</h3>
-                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f6.desc">AI-powered keyword suggestions to help your book get discovered on Amazon.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -722,31 +715,16 @@
                 Pay once per book.
             </p>
 
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3 data-i18n="pricing.basic.title">Basic</h3>
+            <div style="display: flex; justify-content: center;">
+                <div class="pricing-card featured" style="max-width: 400px;">
+                    <h3 data-i18n="pricing.single.title">Professional Formatting</h3>
                     <div class="price">$50<span style="font-size: 1rem; color: #6b7280;" data-i18n="pricing.perBook">/book</span></div>
                     <ul class="features-list">
-                        <li data-i18n="pricing.basic.f1">Automatic formatting fixes</li>
-                        <li data-i18n="pricing.basic.f2">Chapter detection</li>
-                        <li data-i18n="pricing.basic.f3">EPUB for Kindle</li>
-                        <li data-i18n="pricing.basic.f4">Print PDF</li>
-                        <li data-i18n="pricing.basic.f5">Table of contents</li>
-                    </ul>
-                    <button class="cta-button" onclick="startFormatting()" data-i18n="pricing.getStarted">Get Started</button>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div style="background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin-bottom: 20px;" data-i18n="pricing.popular">Most Popular</div>
-                    <h3 data-i18n="pricing.premium.title">Premium</h3>
-                    <div class="price">$99<span style="font-size: 1rem; color: #6b7280;" data-i18n="pricing.perBook">/book</span></div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.premium.f1"><strong>Everything in Basic</strong></li>
-                        <li data-i18n="pricing.premium.f2">AI keyword research</li>
-                        <li data-i18n="pricing.premium.f3">Category recommendations</li>
-                        <li data-i18n="pricing.premium.f4">Description optimizer</li>
-                        <li data-i18n="pricing.premium.f5">Cover design</li>
-                        <li data-i18n="pricing.premium.f6">Print cover with spine</li>
+                        <li data-i18n="pricing.single.f1">Automatic formatting fixes</li>
+                        <li data-i18n="pricing.single.f2">Smart chapter detection</li>
+                        <li data-i18n="pricing.single.f3">EPUB for Kindle</li>
+                        <li data-i18n="pricing.single.f4">Print-ready PDF</li>
+                        <li data-i18n="pricing.single.f5">Automatic table of contents</li>
                     </ul>
                     <button class="cta-button" onclick="startFormatting()" data-i18n="pricing.getStarted">Get Started</button>
                 </div>
@@ -794,8 +772,7 @@
                     f2: { title: "Auto-Fix Formatting", desc: "Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections." },
                     f3: { title: "EPUB for Kindle", desc: "Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP." },
                     f4: { title: "Table of Contents", desc: "Automatic TOC generation with proper navigation for eReaders." },
-                    f5: { title: "Print-Ready PDF", desc: "Get a professionally formatted PDF for paperback publishing with proper margins and spacing." },
-                    f6: { title: "Keyword Research", desc: "AI-powered keyword suggestions to help your book get discovered on Amazon." }
+                    f5: { title: "Print-Ready PDF", desc: "Get a professionally formatted PDF for paperback publishing with proper margins and spacing." }
                 },
                 howItWorks: {
                     title: "How It Works",
@@ -808,24 +785,14 @@
                     title: "Simple Pricing",
                     subtitle: "Pay once per book.",
                     perBook: "/book",
-                    popular: "Most Popular",
                     getStarted: "Get Started",
-                    basic: {
-                        title: "Basic",
+                    single: {
+                        title: "Professional Formatting",
                         f1: "Automatic formatting fixes",
-                        f2: "Chapter detection",
+                        f2: "Smart chapter detection",
                         f3: "EPUB for Kindle",
-                        f4: "Print PDF",
-                        f5: "Table of contents"
-                    },
-                    premium: {
-                        title: "Premium",
-                        f1: "<strong>Everything in Basic</strong>",
-                        f2: "AI keyword research",
-                        f3: "Category recommendations",
-                        f4: "Description optimizer",
-                        f5: "Cover design",
-                        f6: "Print cover with spine"
+                        f4: "Print-ready PDF",
+                        f5: "Automatic table of contents"
                     }
                 },
                 footer: {
@@ -857,8 +824,7 @@
                     f2: { title: "Corrección automática de formato", desc: "Corrige sangría, espaciado, tabulaciones y otros problemas comunes que causan rechazos en KDP." },
                     f3: { title: "EPUB para Kindle", desc: "Genera un archivo EPUB perfectamente formateado listo para subir directamente a Amazon KDP." },
                     f4: { title: "Tabla de contenidos", desc: "Generación automática de tabla de contenidos con navegación adecuada para lectores electrónicos." },
-                    f5: { title: "PDF listo para imprimir", desc: "Obtén un PDF formateado profesionalmente para publicación en tapa blanda con márgenes y espaciado adecuados." },
-                    f6: { title: "Investigación de palabras clave", desc: "Sugerencias de palabras clave con IA para ayudar a que tu libro sea descubierto en Amazon." }
+                    f5: { title: "PDF listo para imprimir", desc: "Obtén un PDF formateado profesionalmente para publicación en tapa blanda con márgenes y espaciado adecuados." }
                 },
                 howItWorks: {
                     title: "Cómo funciona",
@@ -871,24 +837,14 @@
                     title: "Precios simples",
                     subtitle: "Paga una vez por libro.",
                     perBook: "/libro",
-                    popular: "Más popular",
                     getStarted: "Comenzar",
-                    basic: {
-                        title: "Básico",
+                    single: {
+                        title: "Formato profesional",
                         f1: "Correcciones automáticas de formato",
-                        f2: "Detección de capítulos",
+                        f2: "Detección inteligente de capítulos",
                         f3: "EPUB para Kindle",
-                        f4: "PDF para imprimir",
-                        f5: "Tabla de contenidos"
-                    },
-                    premium: {
-                        title: "Premium",
-                        f1: "<strong>Todo lo del básico</strong>",
-                        f2: "Investigación de palabras clave con IA",
-                        f3: "Recomendaciones de categorías",
-                        f4: "Optimizador de descripciones",
-                        f5: "Diseño de portada",
-                        f6: "Portada para imprimir con lomo"
+                        f4: "PDF listo para imprimir",
+                        f5: "Tabla de contenidos automática"
                     }
                 },
                 footer: {
