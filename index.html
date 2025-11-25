@@ -500,7 +500,10 @@
                 <span>LibroReady</span>
             </div>
             <div class="nav-links">
-                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--gray); border-radius: 12px; border: 2px solid var(--gray-border);">
+                    <span style="font-size: 1.1rem; font-weight: 700; color: var(--primary);">$50</span>
+                    <span style="color: #6b7280; font-size: 0.9rem;" data-i18n="nav.perBook">/book</span>
+                </div>
                 <button class="cta-button" style="padding: 12px 30px; font-size: 1rem;" onclick="startFormatting()" data-i18n="nav.start">Start Formatting →</button>
                 <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">
                     <span id="langIcon">🌐</span>
@@ -522,37 +525,37 @@
         <div class="container">
             <h2 class="section-title" data-i18n="features.title">Everything You Need to Publish on Amazon</h2>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; max-width: 1000px; margin: 0 auto;">
                 <!-- Feature 1 -->
-                <div style="text-align: center;">
+                <div style="text-align: center; flex: 0 0 280px;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📚</div>
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f1.title">Smart Chapter Detection</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f1.desc">Automatically finds and formats your chapters.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div style="text-align: center;">
+                <div style="text-align: center; flex: 0 0 280px;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">✨</div>
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f2.title">Auto-Fix Formatting</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f2.desc">Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div style="text-align: center;">
+                <div style="text-align: center; flex: 0 0 280px;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📱</div>
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f3.title">EPUB for Kindle</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f3.desc">Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP.</p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div style="text-align: center;">
+                <div style="text-align: center; flex: 0 0 280px;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📖</div>
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f4.title">Table of Contents</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f4.desc">Automatic TOC generation with proper navigation for eReaders.</p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div style="text-align: center;">
+                <div style="text-align: center; flex: 0 0 280px;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📕</div>
                     <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f5.title">Print-Ready PDF</h3>
                     <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f5.desc">Get a professionally formatted PDF for paperback publishing with proper margins and spacing.</p>
@@ -707,31 +710,6 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" style="background: var(--gray);">
-        <div class="container">
-            <h2 class="section-title" data-i18n="pricing.title">Simple Pricing</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 50px;" data-i18n="pricing.subtitle">
-                Pay once per book.
-            </p>
-
-            <div style="display: flex; justify-content: center;">
-                <div class="pricing-card featured" style="max-width: 400px;">
-                    <h3 data-i18n="pricing.single.title">Professional Formatting</h3>
-                    <div class="price">$50<span style="font-size: 1rem; color: #6b7280;" data-i18n="pricing.perBook">/book</span></div>
-                    <ul class="features-list">
-                        <li data-i18n="pricing.single.f1">Automatic formatting fixes</li>
-                        <li data-i18n="pricing.single.f2">Smart chapter detection</li>
-                        <li data-i18n="pricing.single.f3">EPUB for Kindle</li>
-                        <li data-i18n="pricing.single.f4">Print-ready PDF</li>
-                        <li data-i18n="pricing.single.f5">Automatic table of contents</li>
-                    </ul>
-                    <button class="cta-button" onclick="startFormatting()" data-i18n="pricing.getStarted">Get Started</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer style="background: var(--primary); color: white; padding: 40px 20px; text-align: center;">
         <div class="container">
@@ -759,10 +737,11 @@
             en: {
                 nav: {
                     pricing: "Pricing",
-                    start: "Start Formatting →"
+                    start: "Start Formatting →",
+                    perBook: "/book"
                 },
                 hero: {
-                    title: "Format your ebook for Kindle<br>in minutes. Not days.",
+                    title: "Format your ebook for Kindle<br>in minutes.",
                     subtitle: "Upload your manuscript and get a perfectly formatted EPUB + print-ready PDF with one click.",
                     cta: "Start Formatting →"
                 },
@@ -811,10 +790,11 @@
             es: {
                 nav: {
                     pricing: "Precios",
-                    start: "Empezar a formatear →"
+                    start: "Empezar a formatear →",
+                    perBook: "/libro"
                 },
                 hero: {
-                    title: "Formatea tu ebook para Kindle<br>en minutos. No días.",
+                    title: "Formatea tu ebook para Kindle<br>en minutos.",
                     subtitle: "Sube tu manuscrito y obtén un EPUB perfectamente formateado + PDF listo para imprimir con un clic.",
                     cta: "Empezar a formatear →"
                 },
