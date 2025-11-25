@@ -102,6 +102,19 @@
             border-radius: 20px;
             font-size: 0.9rem;
             cursor: pointer;
+            border: 2px solid var(--gray-border);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch:hover {
+            background: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
@@ -487,66 +500,69 @@
                 <span>LibroReady</span>
             </div>
             <div class="nav-links">
-                <a href="#pricing">Pricing</a>
-                <button class="cta-button" style="padding: 12px 30px; font-size: 1rem;" onclick="startFormatting()">Start Formatting →</button>
-                <span class="lang-switch">🌐 EN / ES</span>
+                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <button class="cta-button" style="padding: 12px 30px; font-size: 1rem;" onclick="startFormatting()" data-i18n="nav.start">Start Formatting →</button>
+                <button class="lang-switch" id="langSwitch" onclick="toggleLanguage()">
+                    <span id="langIcon">🌐</span>
+                    <span id="langText">EN</span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <h1>Format your ebook for Kindle<br>in minutes. Not days.</h1>
-        <p class="hero-subtitle">Upload your manuscript and get a perfectly formatted EPUB + print-ready PDF with one click.</p>
-        <button class="cta-button" onclick="startFormatting()">Start Formatting →</button>
+        <h1 data-i18n="hero.title">Format your ebook for Kindle<br>in minutes. Not days.</h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Upload your manuscript and get a perfectly formatted EPUB + print-ready PDF with one click.</p>
+        <button class="cta-button" onclick="startFormatting()" data-i18n="hero.cta">Start Formatting →</button>
     </section>
 
     <!-- Features Section -->
     <section style="background: white; padding: 80px 20px;">
         <div class="container">
-            <h2 class="section-title">Everything You Need to Publish on Amazon</h2>
+            <h2 class="section-title" data-i18n="features.title">Everything You Need to Publish on Amazon</h2>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
                 <!-- Feature 1 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📚</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Smart Chapter Detection</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Automatically finds and formats your chapters.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f1.title">Smart Chapter Detection</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f1.desc">Automatically finds and formats your chapters.</p>
                 </div>
 
                 <!-- Feature 2 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">✨</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Auto-Fix Formatting</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f2.title">Auto-Fix Formatting</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f2.desc">Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections.</p>
                 </div>
 
                 <!-- Feature 3 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📱</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">EPUB for Kindle</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f3.title">EPUB for Kindle</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f3.desc">Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP.</p>
                 </div>
 
                 <!-- Feature 4 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📖</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Table of Contents</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Automatic TOC generation with proper navigation for eReaders.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f4.title">Table of Contents</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f4.desc">Automatic TOC generation with proper navigation for eReaders.</p>
                 </div>
 
                 <!-- Feature 5 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">📕</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Print-Ready PDF</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Get a professionally formatted PDF for paperback publishing with proper margins and spacing.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f5.title">Print-Ready PDF</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f5.desc">Get a professionally formatted PDF for paperback publishing with proper margins and spacing.</p>
                 </div>
 
                 <!-- Feature 6 -->
                 <div style="text-align: center;">
                     <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #ff9f5a); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">🔍</div>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);">Keyword Research</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">AI-powered keyword suggestions to help your book get discovered on Amazon.</p>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--primary);" data-i18n="features.f6.title">Keyword Research</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="features.f6.desc">AI-powered keyword suggestions to help your book get discovered on Amazon.</p>
                 </div>
             </div>
         </div>
@@ -671,28 +687,28 @@
     <!-- How It Works Section -->
     <section style="background: white; padding: 80px 20px;">
         <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 60px;">
+            <h2 class="section-title" data-i18n="howItWorks.title">How It Works</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 60px;" data-i18n="howItWorks.subtitle">
                 Three simple steps. One beautiful book.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
                 <div style="text-align: center;">
                     <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">1</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Upload</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Drag and drop your .docx manuscript. We'll analyze it automatically.</p>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);" data-i18n="howItWorks.step1.title">Upload</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="howItWorks.step1.desc">Drag and drop your .docx manuscript. We'll analyze it automatically.</p>
                 </div>
 
                 <div style="text-align: center;">
                     <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">2</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Review</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">See what issues we found. Choose which chapters and fixes to apply.</p>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);" data-i18n="howItWorks.step2.title">Review</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="howItWorks.step2.desc">See what issues we found. Choose which chapters and fixes to apply.</p>
                 </div>
 
                 <div style="text-align: center;">
                     <div style="width: 80px; height: 80px; background: var(--accent); color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);">3</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);">Download</h3>
-                    <p style="color: #6b7280; line-height: 1.6;">Get your EPUB, formatted DOCX, and print PDF. Ready for Amazon.</p>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--primary);" data-i18n="howItWorks.step3.title">Download</h3>
+                    <p style="color: #6b7280; line-height: 1.6;" data-i18n="howItWorks.step3.desc">Get your EPUB, formatted DOCX, and print PDF. Ready for Amazon.</p>
                 </div>
             </div>
         </div>
@@ -701,38 +717,38 @@
     <!-- Pricing Section -->
     <section id="pricing" style="background: var(--gray);">
         <div class="container">
-            <h2 class="section-title">Simple Pricing</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 50px;">
+            <h2 class="section-title" data-i18n="pricing.title">Simple Pricing</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 50px;" data-i18n="pricing.subtitle">
                 Pay once per book.
             </p>
 
             <div class="pricing-cards">
                 <div class="pricing-card">
-                    <h3>Basic</h3>
-                    <div class="price">$50<span style="font-size: 1rem; color: #6b7280;">/book</span></div>
+                    <h3 data-i18n="pricing.basic.title">Basic</h3>
+                    <div class="price">$50<span style="font-size: 1rem; color: #6b7280;" data-i18n="pricing.perBook">/book</span></div>
                     <ul class="features-list">
-                        <li>Automatic formatting fixes</li>
-                        <li>Chapter detection</li>
-                        <li>EPUB for Kindle</li>
-                        <li>Print PDF</li>
-                        <li>Table of contents</li>
+                        <li data-i18n="pricing.basic.f1">Automatic formatting fixes</li>
+                        <li data-i18n="pricing.basic.f2">Chapter detection</li>
+                        <li data-i18n="pricing.basic.f3">EPUB for Kindle</li>
+                        <li data-i18n="pricing.basic.f4">Print PDF</li>
+                        <li data-i18n="pricing.basic.f5">Table of contents</li>
                     </ul>
-                    <button class="cta-button" onclick="startFormatting()">Get Started</button>
+                    <button class="cta-button" onclick="startFormatting()" data-i18n="pricing.getStarted">Get Started</button>
                 </div>
 
                 <div class="pricing-card featured">
-                    <div style="background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin-bottom: 20px;">Most Popular</div>
-                    <h3>Premium</h3>
-                    <div class="price">$99<span style="font-size: 1rem; color: #6b7280;">/book</span></div>
+                    <div style="background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin-bottom: 20px;" data-i18n="pricing.popular">Most Popular</div>
+                    <h3 data-i18n="pricing.premium.title">Premium</h3>
+                    <div class="price">$99<span style="font-size: 1rem; color: #6b7280;" data-i18n="pricing.perBook">/book</span></div>
                     <ul class="features-list">
-                        <li><strong>Everything in Basic</strong></li>
-                        <li>AI keyword research</li>
-                        <li>Category recommendations</li>
-                        <li>Description optimizer</li>
-                        <li>Cover design</li>
-                        <li>Print cover with spine</li>
+                        <li data-i18n="pricing.premium.f1"><strong>Everything in Basic</strong></li>
+                        <li data-i18n="pricing.premium.f2">AI keyword research</li>
+                        <li data-i18n="pricing.premium.f3">Category recommendations</li>
+                        <li data-i18n="pricing.premium.f4">Description optimizer</li>
+                        <li data-i18n="pricing.premium.f5">Cover design</li>
+                        <li data-i18n="pricing.premium.f6">Print cover with spine</li>
                     </ul>
-                    <button class="cta-button" onclick="startFormatting()">Get Started</button>
+                    <button class="cta-button" onclick="startFormatting()" data-i18n="pricing.getStarted">Get Started</button>
                 </div>
             </div>
         </div>
@@ -749,8 +765,8 @@
                 </svg>
                 <span>LibroReady</span>
             </div>
-            <p style="opacity: 0.9; margin-bottom: 20px; font-size: 1.05rem;">Simple ebook formatting for Amazon KDP</p>
-            <p style="opacity: 0.7; font-size: 0.95rem;">&copy; 2024 LibroReady. All rights reserved.</p>
+            <p style="opacity: 0.9; margin-bottom: 20px; font-size: 1.05rem;" data-i18n="footer.tagline">Simple ebook formatting for Amazon KDP</p>
+            <p style="opacity: 0.7; font-size: 0.95rem;" data-i18n="footer.copyright">&copy; 2024 LibroReady. All rights reserved.</p>
         </div>
     </footer>
 
@@ -759,6 +775,158 @@
         let sessionId = null;
         let analysisData = null;
         let selectedFile = null;
+
+        // Bilingual support
+        const translations = {
+            en: {
+                nav: {
+                    pricing: "Pricing",
+                    start: "Start Formatting →"
+                },
+                hero: {
+                    title: "Format your ebook for Kindle<br>in minutes. Not days.",
+                    subtitle: "Upload your manuscript and get a perfectly formatted EPUB + print-ready PDF with one click.",
+                    cta: "Start Formatting →"
+                },
+                features: {
+                    title: "Everything You Need to Publish on Amazon",
+                    f1: { title: "Smart Chapter Detection", desc: "Automatically finds and formats your chapters." },
+                    f2: { title: "Auto-Fix Formatting", desc: "Fixes indentation, spacing, tabs, and other common issues that cause KDP rejections." },
+                    f3: { title: "EPUB for Kindle", desc: "Generate a perfectly formatted EPUB file ready to upload directly to Amazon KDP." },
+                    f4: { title: "Table of Contents", desc: "Automatic TOC generation with proper navigation for eReaders." },
+                    f5: { title: "Print-Ready PDF", desc: "Get a professionally formatted PDF for paperback publishing with proper margins and spacing." },
+                    f6: { title: "Keyword Research", desc: "AI-powered keyword suggestions to help your book get discovered on Amazon." }
+                },
+                howItWorks: {
+                    title: "How It Works",
+                    subtitle: "Three simple steps. One beautiful book.",
+                    step1: { title: "Upload", desc: "Drag and drop your .docx manuscript. We'll analyze it automatically." },
+                    step2: { title: "Review", desc: "See what issues we found. Choose which chapters and fixes to apply." },
+                    step3: { title: "Download", desc: "Get your EPUB, formatted DOCX, and print PDF. Ready for Amazon." }
+                },
+                pricing: {
+                    title: "Simple Pricing",
+                    subtitle: "Pay once per book.",
+                    perBook: "/book",
+                    popular: "Most Popular",
+                    getStarted: "Get Started",
+                    basic: {
+                        title: "Basic",
+                        f1: "Automatic formatting fixes",
+                        f2: "Chapter detection",
+                        f3: "EPUB for Kindle",
+                        f4: "Print PDF",
+                        f5: "Table of contents"
+                    },
+                    premium: {
+                        title: "Premium",
+                        f1: "<strong>Everything in Basic</strong>",
+                        f2: "AI keyword research",
+                        f3: "Category recommendations",
+                        f4: "Description optimizer",
+                        f5: "Cover design",
+                        f6: "Print cover with spine"
+                    }
+                },
+                footer: {
+                    tagline: "Simple ebook formatting for Amazon KDP",
+                    copyright: "&copy; 2024 LibroReady. All rights reserved."
+                }
+            },
+            es: {
+                nav: {
+                    pricing: "Precios",
+                    start: "Empezar a Formatear →"
+                },
+                hero: {
+                    title: "Formatea tu ebook para Kindle<br>en minutos. No días.",
+                    subtitle: "Sube tu manuscrito y obtén un EPUB perfectamente formateado + PDF listo para imprimir con un clic.",
+                    cta: "Empezar a Formatear →"
+                },
+                features: {
+                    title: "Todo lo que Necesitas para Publicar en Amazon",
+                    f1: { title: "Detección Inteligente de Capítulos", desc: "Encuentra y formatea tus capítulos automáticamente." },
+                    f2: { title: "Corrección Automática de Formato", desc: "Corrige sangría, espaciado, tabulaciones y otros problemas comunes que causan rechazos en KDP." },
+                    f3: { title: "EPUB para Kindle", desc: "Genera un archivo EPUB perfectamente formateado listo para subir directamente a Amazon KDP." },
+                    f4: { title: "Tabla de Contenidos", desc: "Generación automática de tabla de contenidos con navegación adecuada para lectores electrónicos." },
+                    f5: { title: "PDF Listo para Imprimir", desc: "Obtén un PDF formateado profesionalmente para publicación en tapa blanda con márgenes y espaciado adecuados." },
+                    f6: { title: "Investigación de Palabras Clave", desc: "Sugerencias de palabras clave con IA para ayudar a que tu libro sea descubierto en Amazon." }
+                },
+                howItWorks: {
+                    title: "Cómo Funciona",
+                    subtitle: "Tres simples pasos. Un libro hermoso.",
+                    step1: { title: "Subir", desc: "Arrastra y suelta tu manuscrito .docx. Lo analizaremos automáticamente." },
+                    step2: { title: "Revisar", desc: "Ve qué problemas encontramos. Elige qué capítulos y correcciones aplicar." },
+                    step3: { title: "Descargar", desc: "Obtén tu EPUB, DOCX formateado y PDF para imprimir. Listo para Amazon." }
+                },
+                pricing: {
+                    title: "Precios Simples",
+                    subtitle: "Paga una vez por libro.",
+                    perBook: "/libro",
+                    popular: "Más Popular",
+                    getStarted: "Comenzar",
+                    basic: {
+                        title: "Básico",
+                        f1: "Correcciones automáticas de formato",
+                        f2: "Detección de capítulos",
+                        f3: "EPUB para Kindle",
+                        f4: "PDF para imprimir",
+                        f5: "Tabla de contenidos"
+                    },
+                    premium: {
+                        title: "Premium",
+                        f1: "<strong>Todo lo del Básico</strong>",
+                        f2: "Investigación de palabras clave con IA",
+                        f3: "Recomendaciones de categorías",
+                        f4: "Optimizador de descripciones",
+                        f5: "Diseño de portada",
+                        f6: "Portada para imprimir con lomo"
+                    }
+                },
+                footer: {
+                    tagline: "Formato simple de ebooks para Amazon KDP",
+                    copyright: "&copy; 2024 LibroReady. Todos los derechos reservados."
+                }
+            }
+        };
+
+        // Language management
+        let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            localStorage.setItem('lang', currentLang);
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            const lang = translations[currentLang];
+
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = lang;
+
+                // Navigate through nested object
+                for (const k of keys) {
+                    value = value[k];
+                }
+
+                if (value) {
+                    el.innerHTML = value;
+                }
+            });
+
+            // Update language switcher
+            document.getElementById('langText').textContent = currentLang.toUpperCase();
+
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLang;
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', updateLanguage);
 
         function startFormatting() {
             document.getElementById('uploadSection').classList.add('active');
