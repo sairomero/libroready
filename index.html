@@ -596,31 +596,31 @@
     <!-- Results/Review Section -->
     <section class="results-section" id="resultsSection">
         <div class="container">
-            <h2 class="section-title">Review Your Book</h2>
+            <h2 class="section-title" data-i18n="review.title">Review Your Book</h2>
 
             <div class="stats">
                 <div class="stat-card">
                     <div class="stat-number" id="statChapters">0</div>
-                    <div>Chapters Detected</div>
+                    <div data-i18n="review.chaptersDetected">Chapters Detected</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="statIssues">0</div>
-                    <div>Issues Found</div>
+                    <div data-i18n="review.issuesFound">Issues Found</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="statWords">0</div>
-                    <div>Total Words</div>
+                    <div data-i18n="review.totalWords">Total Words</div>
                 </div>
             </div>
 
-            <h3 style="margin-top: 40px; margin-bottom: 20px;">📑 Detected Chapters</h3>
+            <h3 style="margin-top: 40px; margin-bottom: 20px;" data-i18n="review.detectedChapters">📑 Detected Chapters</h3>
             <div class="chapters-list" id="chaptersList"></div>
 
-            <h3 style="margin-top: 40px; margin-bottom: 20px;">🔧 Formatting Issues</h3>
+            <h3 style="margin-top: 40px; margin-bottom: 20px;" data-i18n="review.formattingIssues">🔧 Formatting Issues</h3>
             <div class="issues-list" id="issuesList"></div>
 
             <div style="text-align: center; margin-top: 50px;">
-                <button class="cta-button" onclick="processDocument()">Generate Files</button>
+                <button class="cta-button" onclick="processDocument()" data-i18n="review.generateFiles">Generate Files</button>
             </div>
         </div>
     </section>
@@ -646,36 +646,36 @@
     <!-- Download Section -->
     <section class="download-section" id="downloadSection">
         <div class="container">
-            <h2 class="section-title" style="color: white;">🎉 Your Book is Ready!</h2>
-            <p style="text-align: center; font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px;">
+            <h2 class="section-title" style="color: white;" data-i18n="download.title">🎉 Your Book is Ready!</h2>
+            <p style="text-align: center; font-size: 1.2rem; opacity: 0.9; margin-bottom: 40px;" data-i18n="download.subtitle">
                 Download your professionally formatted files
             </p>
 
             <div class="download-grid">
                 <div class="download-card">
                     <div style="font-size: 3rem; margin-bottom: 20px;">📱</div>
-                    <h3>EPUB File</h3>
-                    <p style="color: #6b7280; margin: 15px 0;">For Amazon KDP eBook</p>
-                    <button class="cta-button" onclick="downloadFile('epub')">Download EPUB</button>
+                    <h3 data-i18n="download.epubTitle">EPUB File</h3>
+                    <p style="color: #6b7280; margin: 15px 0;" data-i18n="download.epubDesc">For Amazon KDP eBook</p>
+                    <button class="cta-button" onclick="downloadFile('epub')" data-i18n="download.epubBtn">Download EPUB</button>
                 </div>
 
                 <div class="download-card">
                     <div style="font-size: 3rem; margin-bottom: 20px;">📄</div>
-                    <h3>Word Document</h3>
-                    <p style="color: #6b7280; margin: 15px 0;">Formatted .docx file</p>
-                    <button class="cta-button" onclick="downloadFile('docx')">Download DOCX</button>
+                    <h3 data-i18n="download.docxTitle">Word Document</h3>
+                    <p style="color: #6b7280; margin: 15px 0;" data-i18n="download.docxDesc">Formatted .docx file</p>
+                    <button class="cta-button" onclick="downloadFile('docx')" data-i18n="download.docxBtn">Download DOCX</button>
                 </div>
 
                 <div class="download-card">
                     <div style="font-size: 3rem; margin-bottom: 20px;">📕</div>
-                    <h3>Print PDF</h3>
-                    <p style="color: #6b7280; margin: 15px 0;">For print books</p>
-                    <button class="cta-button" onclick="downloadFile('pdf')">Download PDF</button>
+                    <h3 data-i18n="download.pdfTitle">Print PDF</h3>
+                    <p style="color: #6b7280; margin: 15px 0;" data-i18n="download.pdfDesc">For print books</p>
+                    <button class="cta-button" onclick="downloadFile('pdf')" data-i18n="download.pdfBtn">Download PDF</button>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 50px;">
-                <button class="cta-button" onclick="location.reload()">Format Another Book</button>
+                <button class="cta-button" onclick="location.reload()" data-i18n="download.anotherBook">Format Another Book</button>
             </div>
         </div>
     </section>
@@ -785,6 +785,29 @@
                     clickText: "or click to browse",
                     analyzeBtn: "Analyze Document",
                     analyzing: "Analyzing your manuscript..."
+                },
+                review: {
+                    title: "Review Your Book",
+                    chaptersDetected: "Chapters Detected",
+                    issuesFound: "Issues Found",
+                    totalWords: "Total Words",
+                    detectedChapters: "📑 Detected Chapters",
+                    formattingIssues: "🔧 Formatting Issues",
+                    generateFiles: "Generate Files"
+                },
+                download: {
+                    title: "🎉 Your Book is Ready!",
+                    subtitle: "Download your professionally formatted files",
+                    epubTitle: "EPUB File",
+                    epubDesc: "For Amazon KDP eBook",
+                    epubBtn: "Download EPUB",
+                    docxTitle: "Word Document",
+                    docxDesc: "Formatted .docx file",
+                    docxBtn: "Download DOCX",
+                    pdfTitle: "Print PDF",
+                    pdfDesc: "For print books",
+                    pdfBtn: "Download PDF",
+                    anotherBook: "Format Another Book"
                 }
             },
             es: {
@@ -838,6 +861,29 @@
                     clickText: "o haz clic para buscar",
                     analyzeBtn: "Analizar documento",
                     analyzing: "Analizando tu manuscrito..."
+                },
+                review: {
+                    title: "Revisa tu libro",
+                    chaptersDetected: "Capítulos detectados",
+                    issuesFound: "Problemas encontrados",
+                    totalWords: "Palabras totales",
+                    detectedChapters: "📑 Capítulos detectados",
+                    formattingIssues: "🔧 Problemas de formato",
+                    generateFiles: "Generar archivos"
+                },
+                download: {
+                    title: "🎉 ¡Tu libro está listo!",
+                    subtitle: "Descarga tus archivos formateados",
+                    epubTitle: "Archivo EPUB",
+                    epubDesc: "Para ebook en Amazon KDP",
+                    epubBtn: "Descargar EPUB",
+                    docxTitle: "Documento Word",
+                    docxDesc: "Archivo .docx formateado",
+                    docxBtn: "Descargar DOCX",
+                    pdfTitle: "PDF para imprimir",
+                    pdfDesc: "Para libros impresos",
+                    pdfBtn: "Descargar PDF",
+                    anotherBook: "Formatear otro libro"
                 }
             }
         };
